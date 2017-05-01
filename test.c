@@ -12,41 +12,39 @@ void main(int argc, char** argv) {
 		ayqu_assert(e);
 	if(e = ayqu_option(stream, AYQU_OPTION_ENCODING, AYQU_ENCODING_UTF8))
 		ayqu_assert(e);
-	if(e = ayqu_option(stream, AYQU_OPTION_NOISE_TOLERANT, true))
+	if(e = ayqu_handler(stream, handler, NULL))
 		ayqu_assert(e);
-	if(e = ayqu_callback(stream, AYQU_CALLBACK_ALL, callback))
-		ayqu_assert(e);
-	const char* json = "\"string value I am\"null{key: value}-1 NaN [1, 2, 3]";
+	const char* json = "\"string value I am\"null{key: value}-1 [1, 2, 3]";
 	if(e = ayqu_feed(stream, json, strlen(json)))
 		ayqu_assert(e);
 	if(e = ayqu_dispose(stream))
 		ayqu_assert(e);
 }
 
-void callback(void* context, ayqu_callback_type_t type, ayqu_value_t* payload) {
+void handler(void* context, ayqu_event_t type, ayqu_value_t* payload) {
 	switch(type) {
-		case AYQU_CALLBACK_ERROR:
+		case AYQU_EVENT_ERROR:
 			break;
-		case AYQU_CALLBACK_DOCUMENT_START:
+		case AYQU_EVENT_DOCUMENT_START:
 			break;
-		case AYQU_CALLBACK_DOCUMENT_END:
+		case AYQU_EVENT_DOCUMENT_END:
 			break;
-		case AYQU_CALLBACK_VALUE:
+		case AYQU_EVENT_VALUE:
 			break;
-		case AYQU_CALLBACK_OBJECT_START:
+		case AYQU_EVENT_OBJECT_START:
 			break;
-		case AYQU_CALLBACK_OBJECT_KEY:
+		case AYQU_EVENT_OBJECT_KEY:
 			break;
-		case AYQU_CALLBACK_OBJECT_END:
+		case AYQU_EVENT_OBJECT_END:
 			break;
-		case AYQU_CALLBACK_ARRAY_START:
+		case AYQU_EVENT_ARRAY_START:
 			break;
-		case AYQU_CALLBACK_ARRAY_END:
+		case AYQU_EVENT_ARRAY_END:
 			break;
-		case AYQU_CALLBACK_NOISE:
+		case AYQU_EVENT_NOISE:
 			break;
 		default:
-			assert(("unknown callback type", false));
+			assert(("unknown event", false));
 			break;
 	}
 }

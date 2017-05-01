@@ -1,3 +1,7 @@
+#pragma once
+
+#include <stdbool.h>
+
 struct ayqu_value_t;
 
 enum ayqu_value_type_t {
@@ -19,12 +23,12 @@ ayqu_error_t* ayqu_value_type(ayqu_value_t* payload, ayqu_value_type_t* value);
 /**
  * Returns true if the number value stored in the payload doesn't have a fractional part.
  */
-ayqu_error_t* ayqu_value_number_is_integer(ayqu_value_t* payload, _Bool* value);
+ayqu_error_t* ayqu_value_number_is_integer(ayqu_value_t* payload, bool* value);
 
 /**
  * Returns true if the number value stored in the payload is negative
  */
-ayqu_error_t* ayqu_value_number_is_negative(ayqu_value_t* payload, _Bool* value);
+ayqu_error_t* ayqu_value_number_is_negative(ayqu_value_t* payload, bool* value);
 
 /**
  * Returns the payload as int.
@@ -34,27 +38,27 @@ ayqu_error_t* ayqu_value_int(ayqu_value_t* payload, int* value);
 /**
  * Returns the payload as unsigned int.
  */
-ayqu_error_t* ayqu_value_unsigned(ayqu_value_t* payload, int* value);
+ayqu_error_t* ayqu_value_uint(ayqu_value_t* payload, unsigned int* value);
 
 /**
  * Returns the payload as long.
  */
-ayqu_error_t* ayqu_value_long(ayqu_value_t* payload, int* value);
+ayqu_error_t* ayqu_value_long(ayqu_value_t* payload, long* value);
 
 /**
  * Returns the payload as unsigned long.
  */
-ayqu_error_t* ayqu_value_unsigned_long(ayqu_value_t* payload, int* value);
+ayqu_error_t* ayqu_value_ulong(ayqu_value_t* payload, unsigned long* value);
 
 /**
  * Returns the payload as int8_t.
  */
-ayqu_error_t* ayqu_value_int8_t(ayqu_value_t* payload, int* value);
+ayqu_error_t* ayqu_value_int8(ayqu_value_t* payload, int8_t* value);
 
 /**
  * Returns the payload as uint8_t.
  */
-ayqu_error_t* ayqu_value_uint8_t(ayqu_value_t* payload, int* value);
+ayqu_error_t* ayqu_value_uint8(ayqu_value_t* payload, uint8_t* value);
 
 /**
  *
@@ -64,7 +68,7 @@ ayqu_error_t* ayqu_value_string(ayqu_value_t* payload, TODO_define_the_signature
 /**
  *
  */
-ayqu_error_t* ayqu_value_bool(ayqu_value_t* payload, _Bool* value);
+ayqu_error_t* ayqu_value_bool(ayqu_value_t* payload, bool* value);
 
 /**
  * Returns number of elements an array has.
