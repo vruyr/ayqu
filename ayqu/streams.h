@@ -32,10 +32,10 @@ enum ayqu_callback_type_t {
 	AYQU_CALLBACK_ALL            = 0xFFFFFFFF,
 };
 
-typedef void (*ayqu_callback_t)(void* context, ayqu_callback_type_t, ayqu_value_t payload);
+typedef void (*ayqu_callback_t)(void* context, ayqu_callback_type_t, ayqu_value_t* payload);
 
-ayqu_error_code_t ayqu_create(ayqu_stream_t** stream);
-ayqu_error_code_t ayqu_dispose(ayqu_stream_t* stream);
-ayqu_error_code_t ayqu_option(ayqu_stream_t* stream, ayqu_stream_option_t option, ...);
-ayqu_error_code_t ayqu_callback(ayqu_callback_type_t callbacks, ayqu_callback_t callback, void* context);
-ayqu_error_code_t ayqu_feed(ayqu_stream_t* stream, int8_t* data, size_t length);
+ayqu_error_t* ayqu_create(ayqu_stream_t** stream);
+ayqu_error_t* ayqu_dispose(ayqu_stream_t* stream);
+ayqu_error_t* ayqu_option(ayqu_stream_t* stream, ayqu_stream_option_t option, ...);
+ayqu_error_t* ayqu_callback(ayqu_stream_t* stream, ayqu_callback_type_t callbacks, ayqu_callback_t callback, void* context);
+ayqu_error_t* ayqu_feed(ayqu_stream_t* stream, int8_t* data, size_t length);
