@@ -1,6 +1,6 @@
-#include <ayqu/streams.h>
-#include <ayqu/values.h>
-#include <ayqu/errors.h>
+#include <ayqu/stream.h>
+#include <ayqu/value.h>
+#include <ayqu/error.h>
 
 
 void main(int argc, char** argv) {

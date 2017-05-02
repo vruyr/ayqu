@@ -1,6 +1,6 @@
 #pragma once
 
-#include "errors.h"
+#include "error.h"
 
 struct ayqu_stream_t;
 
