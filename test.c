@@ -1,25 +1,33 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include <ayqu/stream.h>
 #include <ayqu/value.h>
 #include <ayqu/error.h>
 
 
-void main(int argc, char** argv) {
-	ayqu_error_t* e = AYQU_ERROR_NONE;
+void handler(void* context, ayqu_event_t type, ayqu_value_t* payload);
+
+
+int main(int argc, char** argv) {
+	ayqu_error_t* e = NULL;
 	ayqu_stream_t* stream = NULL;
-	if(e = ayqu_create(&stream))
+	if((e = ayqu_create(&stream)))
 		ayqu_assert(e);
-	if(e = ayqu_option(stream, AYQU_OPTION_ALLOCATOR, malloc, free))
+	if((e = ayqu_option(stream, AYQU_OPTION_ALLOCATOR, malloc, free)))
 		ayqu_assert(e);
-	if(e = ayqu_option(stream, AYQU_OPTION_ENCODING, AYQU_ENCODING_UTF8))
+	if((e = ayqu_option(stream, AYQU_OPTION_ENCODING, AYQU_ENCODING_UTF8)))
 		ayqu_assert(e);
-	if(e = ayqu_handler(stream, handler, NULL))
+	if((e = ayqu_handler(stream, handler, NULL)))
 		ayqu_assert(e);
 	const char* json = "\"string value I am\"null{key: value}-1 [1, 2, 3]";
-	if(e = ayqu_feed(stream, json, strlen(json)))
+	if((e = ayqu_feed(stream, (const uint8_t*)json, strlen(json))))
 		ayqu_assert(e);
-	if(e = ayqu_dispose(stream))
+	if((e = ayqu_dispose(stream)))
 		ayqu_assert(e);
+	return 0;
 }
+
 
 void handler(void* context, ayqu_event_t type, ayqu_value_t* payload) {
 	switch(type) {
@@ -41,10 +49,9 @@ void handler(void* context, ayqu_event_t type, ayqu_value_t* payload) {
 			break;
 		case AYQU_EVENT_ARRAY_END:
 			break;
-		case AYQU_EVENT_NOISE:
-			break;
 		default:
-			assert(("unknown event", false));
+			printf("unknown event");
+			exit(1);
 			break;
 	}
 }

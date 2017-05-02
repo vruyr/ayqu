@@ -1,10 +1,14 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdint.h>
+#include <stddef.h>
 
-struct ayqu_value_t;
 
-enum ayqu_value_type_t {
+struct ayqu_value;
+typedef struct ayqu_value ayqu_value_t;
+
+enum ayqu_value_type {
 	AYQU_VALUE_TYPE_NUMBER,
 	AYQU_VALUE_TYPE_STRING,
 	AYQU_VALUE_TYPE_BOOLEAN,
@@ -12,6 +16,7 @@ enum ayqu_value_type_t {
 	AYQU_VALUE_TYPE_OBJECT,
 	AYQU_VALUE_TYPE_NULL,
 };
+typedef enum ayqu_value_type ayqu_value_type_t;
 
 //TODO https://en.wikipedia.org/wiki/C_data_types
 
