@@ -68,7 +68,8 @@ ayqu_error_t* ayqu_value_uint8(ayqu_value_t* payload, uint8_t* value);
 /**
  *
  */
-ayqu_error_t* ayqu_value_string(ayqu_value_t* payload, TODO_define_the_signature);
+//TODO design the string retrieval function signature.
+ayqu_error_t* ayqu_value_string(ayqu_value_t* payload, const char**);
 
 /**
  *
