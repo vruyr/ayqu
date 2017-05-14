@@ -14,6 +14,7 @@ int main(int argc, char** argv) {
 	ayqu_stream_t* stream = NULL;
 	if((e = ayqu_create(&stream)))
 		ayqu_assert(e, "failed to create stream");
+	//TODO AYQU_OPTION_ALLOCATOR: malloc, realloc, retain, release, free
 	if((e = ayqu_option(stream, AYQU_OPTION_ALLOCATOR, malloc, free)))
 		ayqu_assert(e, "failed to set allocator option");
 	if((e = ayqu_option(stream, AYQU_OPTION_ENCODING, AYQU_ENCODING_UTF8)))
