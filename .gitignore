@@ -1,3 +1,8 @@
+#{{{ Transient
 .DS_Store
+#}}}
+
+#{{{ Manual
 /Makefile
 /stubs.c
+#}}}
